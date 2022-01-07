@@ -5,7 +5,9 @@ function parseContract(contract, cn){
     let inComment = false
     for(let i = 0; i < lines.length; i++){
         let line = lines[i].trim()
-        
+        if(line.includes("contract " + cn)){
+            cn+="function checkOwnership() public view onlyOwner returns (bool) { return true; }"
+        }
         if(inComment){
             lineCopy = line.replace(/.*\*\//, "")
             if(line !== lineCopy){
