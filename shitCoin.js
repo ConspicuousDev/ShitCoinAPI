@@ -102,4 +102,4 @@ async function main(){
     console.log(" ")
 }
 
-module.exports = { main, tokens, codes }
+module.exports = { main, tokens, contracts }
