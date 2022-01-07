@@ -33,7 +33,7 @@ app.get("/api/token/:token", (req, res) => {
     res.json({})
 })
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 80
 app.listen(PORT, () => {
     //console.log(`Server listening at http://localhost:${PORT}`)
 })
