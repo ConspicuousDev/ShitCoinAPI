@@ -22,6 +22,7 @@ function parseContract(contract){
             if(line.trim().length === 0){
                 continue
             }
+            console.log(line)
             newLines.push(line)
         }
     }
