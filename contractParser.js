@@ -3,10 +3,11 @@ function removeComments(contract){
     let newLines = []
     for(let i = 0; i < lines.length; i++){
         let line = lines[i].trim()
+        line = line.replace(/\/\/.*/, "")
+
         if(line.length === 0){
             continue
         }
-        line = line.replace(/\/\/.*/, "")
         newLines.push(line)
 
     }
