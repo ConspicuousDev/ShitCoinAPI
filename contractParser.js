@@ -22,8 +22,6 @@ function parseContract(contract){
             if(line.trim().length === 0){
                 continue
             }
-            line.replace(/\\\"/, "'") //comitta ai
-            //line.replace(/\\"/, "'")
             newLines.push(line)
         }
     }

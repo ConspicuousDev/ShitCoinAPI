@@ -16,7 +16,7 @@ async function getBscScanData(address){
     if(response.result[0].SourceCode === ''){
         data.publicCode = false
     }else{
-        data.sourceCode = response.result[0]
+        data.sourceCode = response.result[0].replace("\"", "'")
     }
     return data
 }
