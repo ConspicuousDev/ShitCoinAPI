@@ -2,6 +2,7 @@ const express = require("express")
 const exphbs = require("express-handlebars")
 const path = require("path")
 const cors = require("cors")
+const routes = require("./routes")
 const shitCoin = require("./shitCoin")
 const app = express()
 
@@ -14,53 +15,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, "public")))
 
-let routes = [
-    {
-        route: "/",
-        request(req, res) {
-            res.json({
-                message: "Welcome to ShitCoin API.",
-                success: true,
-                version: "0.0.1"
-            })
-        }
-    },
-    {
-        route: "/v1/tokens",
-        request(req, res) {
-            let data = shitCoin.getData()
-            let response = {
-                success: true,
-                tokens: Object.values(data.tokens)
-            }
-            res.json(response)
-        }
-    },
-    {
-        route: "/v1/token/:token",
-        request(req, res) {
-            let data = shitCoin.getData()
-            let response = {success: data.tokens.hasOwnProperty(req.params.token)}
-            if(response.success){
-                response.token = data.tokens[req.params.token]
-            }else{
-                response.message = "Token not found."
-            }
-            
-            res.json(response)
-        }
-    },
-    {
-        route: "*",
-        request(req, res){
-            res.json({
-                message: "Endpoint not found.",
-                success: false
-            })
-        }
-    }
-]
-
+let routes = routes
 for(let i = 0; i < routes.length; i++){
     let route = routes[i]
     app.get(route.route, (req, res) => {route.request(req, res)})

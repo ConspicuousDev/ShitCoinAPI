@@ -5,11 +5,10 @@ let { web3, addresses, abis, provider } = require("./constants");
 const { timeout } = require("nodemon/lib/config");
 const fs = require('fs')
 
-
-
 let tokens = {}
-let listener;
+let contracts = {}
 
+let listener;
 let pancakeRouter; 
 let pancakeFactory;
 let WBNB;
@@ -52,7 +51,7 @@ async function connect(){
         if(!web3.currentProvider.connected){
             //web3 = new Web3(new Web3.providers.HttpProvider((provider)));
             web3 = new Web3(new Web3.providers.WebsocketProvider((provider)));
-            console.log("Reconnected to provider!")
+            //console.log("Reconnected to provider!")
             try{
                 listener.unsubscribe()
             }catch{}
@@ -85,9 +84,9 @@ async function logToken(event){
 
         scanData.liq = await WBNB.methods.balanceOf(event.returnValues.pair).call() / (10 ** 18)
 
-        let token = new Token(scanData.ticker, scanData.name, tokenAddress, scanData.totalSupply, scanData.owner, scanData.liq, scanData.publicCode, [scanData.tax.BuyTax, scanData.tax.SellTax], Date.now())
+        let token = new Token(scanData.ticker, scanData.name, tokenAddress, scanData.totalSupply, scanData.owner, scanData.liq, scanData.publicCode, scanData.tax, Date.now())
         tokens[token.address] = token
-        console.log(token)
+        console.log("Token scanned: "+token.address+".")
     }
 }
 
@@ -100,13 +99,7 @@ async function main(){
     console.log("|____/|_| |_|_|\\__|____/|_| |_|_|_| |_|  \\___|_|   v0.0.1");
     createListener()
     connect()
-    console.log("====================== FETCHED PAIRS: ======================")
+    console.log(" ")
 }
 
-function getData(){
-    return {
-        tokens: tokens
-    }
-}
-
-module.exports = { main, getData }
+module.exports = { main, tokens, codes }
