@@ -6,7 +6,8 @@ function parseContract(contract, cn){
     for(let i = 0; i < lines.length; i++){
         let line = lines[i].trim()
         if(line.includes("contract " + cn)){
-            cn+="function checkOwnership() public view onlyOwner returns (bool) { return true; }"
+            //cn.concat("function checkOwnership() public view onlyOwner returns (bool) { return true; }")
+            cn.concat("TRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUETRUE")
         }
         if(inComment){
             lineCopy = line.replace(/.*\*\//, "")
