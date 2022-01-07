@@ -14,10 +14,9 @@ let routes = [
     {
         route: "/v1/tokens",
         request(req, res) {
-            let data = shitCoin.getData()
             let response = {
                 success: true,
-                tokens: Object.values(data.tokens)
+                tokens: Object.values(shitCoin.tokens)
             }
             res.json(response)
         }
