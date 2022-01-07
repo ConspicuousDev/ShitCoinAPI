@@ -22,9 +22,8 @@ function parseContract(contract){
             if(line.trim().length === 0){
                 continue
             }
-            //line.replace(/\\\"/, "'") //dps precisa tentar esse daq
+            line.replace(/\\\"/, "'") //comitta ai
             //line.replace(/\\"/, "'")
-            line.replace('\\"', "'") //ja tentou assim yes mas tenta dnv ok remove os outros ou sla se preicisa
             newLines.push(line)
         }
     }
