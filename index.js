@@ -16,15 +16,6 @@ app.use(express.static(path.join(__dirname, "public")))
 
 let routes = [
     {
-        route: "*",
-        request(req, res){
-            res.json({
-                message: "Endpoint not found.",
-                success: false
-            })
-        }
-    },
-    {
         route: "/",
         request(req, res) {
             res.json({
@@ -57,6 +48,15 @@ let routes = [
             }
             
             res.json(response)
+        }
+    },
+    {
+        route: "*",
+        request(req, res){
+            res.json({
+                message: "Endpoint not found.",
+                success: false
+            })
         }
     }
 ]
