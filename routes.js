@@ -1,4 +1,4 @@
-export default routes = [
+routes = [
     {
         route: "/",
         request(req, res) {
@@ -44,3 +44,5 @@ export default routes = [
         }
     }
 ]
+
+module.exports = { routes }
