@@ -25,7 +25,7 @@ class Token{
        this.publicCode = publicCode; //Done
        this.tax = tax;
        this.liquidityDate = liquidityDate; //Done
-       this.score = Math.random
+       this.score = Math.random()
    }
 }
 class Holder{
