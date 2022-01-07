@@ -1,0 +1,42 @@
+Structures:
+
+Token:
+
+Ticker 						ADA 
+Name 						Adamantium
+Telegram (on code or find)  telegram.com
+PubCode                     True
+Tax 						[10,10]			
+Creator						0x0000...
+Owner						0x0000...
+Holders						[0x0000..., 100,...]
+Liquidity					100 BNB
+Mkt Cap                     200 BNB
+DatePublish                 237489789356
+DateLiquidity               237489789656
+Score/RedFlags/Check        
+
+Holder:
+
+Quantity                      1000000000000
+AvgP                          0.0000001 BNB
+TotalInvest                   1 BNB
+PositionValue                 10 BNB
+Transactions                  [[1000000000000, 8545146516], [-1000000000000, 8545546516]]
+
+
+Score:
+
+NumericScore 0-100
+Flags		 Fake Renounce, Externally mintable, Tax Changeable, LockTime Low, Similar Code.
+
+
+
+
+
+
+ ____  _     _ _   ____        _  __  __
+/ ___|| |__ (_) |_/ ___| _ __ (_)/ _|/ _| ___ _ __
+\___ \| '_ \| | __\___ \| '_ \| | |_| |_ / _ \ '__|
+ ___) | | | | | |_ ___) | | | | |  _|  _|  __/ |
+|____/|_| |_|_|\__|____/|_| |_|_|_| |_|  \___|_|   v0.0.1
