@@ -31,7 +31,7 @@ let routes = [
                 response.contract = null
                 if(shitCoin.contracts.hasOwnProperty(req.params.token)){
                     response.contract = shitCoin.contracts[req.params.token]
-                    response.parsedContract = contractParser.removeComments(response.contract.SourceCode)
+                    response.contract.parsed = contractParser.parseContract(response.contract.SourceCode)
                 }
             }else{
                 response.message = "Token not found."
