@@ -27,7 +27,10 @@ let routes = [
             let response = {success: shitCoin.tokens.hasOwnProperty(req.params.token)}
             if(response.success){
                 response.token = shitCoin.tokens[req.params.token]
-                response.contract = shitCoin.contracts[req.params.token]
+                response.contract = null
+                if(shitCoin.contrats.hasOwnProperty(req.params.token)){
+                    response.contract = shitCoin.contracts[req.params.token]
+                }
             }else{
                 response.message = "Token not found."
             }

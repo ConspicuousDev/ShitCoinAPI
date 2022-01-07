@@ -86,6 +86,7 @@ async function logToken(event){
 
         let token = new Token(scanData.ticker, scanData.name, tokenAddress, scanData.totalSupply, scanData.owner, scanData.liq, scanData.publicCode, scanData.tax, Date.now())
         tokens[token.address] = token
+        contracts[token.address] = scanData.sourceCode
         console.log("Token scanned: "+token.address+".")
     }
 }
