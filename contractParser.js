@@ -22,10 +22,11 @@ function removeComments(contract){
             if(line.trim().length === 0){
                 continue
             }
+            line.replace("\"", "'")
             newLines.push(line)
         }
     }
-    return newLines.join("\n")
+    return newLines.join("")
 }
 
 module.exports = { removeComments }
