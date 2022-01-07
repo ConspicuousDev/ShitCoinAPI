@@ -1,3 +1,5 @@
+const shitCoin = require("./shitCoin")
+
 let routes = [
     {
         route: "/",
