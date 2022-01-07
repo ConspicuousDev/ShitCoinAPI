@@ -92,7 +92,7 @@ async function logToken(event){
 
 
 async function main(){
-    console.log(" ____  _     _ _   ____        _  __  __           ");
+    console.log(" ____  _     _ _   ____        _  __  __           TM");
     console.log("/ ___|| |__ (_) |_/ ___| _ __ (_)/ _|/ _| ___ _ __ ");
     console.log("\\___ \\| '_ \\| | __\\___ \\| '_ \\| | |_| |_ / _ \\ '__|");
     console.log(" ___) | | | | | |_ ___) | | | | |  _|  _|  __/ |   ");
