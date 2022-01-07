@@ -23,6 +23,7 @@ function removeComments(contract){
                 continue
             }
             line.replace('"', "'")
+            line.replace('\"', "'")
             line.replace('\\"', "'")
             newLines.push(line)
         }
