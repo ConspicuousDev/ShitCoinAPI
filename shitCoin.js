@@ -7,7 +7,7 @@ const fs = require('fs')
 
 
 
-let tokens = []
+let tokens = {}
 let listener;
 
 let pancakeRouter; 
@@ -86,7 +86,7 @@ async function logToken(event){
         scanData.liq = await WBNB.methods.balanceOf(event.returnValues.pair).call() / (10 ** 18)
 
         let token = new Token(scanData.ticker, scanData.name, tokenAddress, scanData.totalSupply, scanData.owner, scanData.liq, scanData.publicCode, [scanData.tax.BuyTax, scanData.tax.SellTax], Date.now())
-        tokens.push(token)
+        tokens[token.address] = token
         console.log(token)
     }
 }

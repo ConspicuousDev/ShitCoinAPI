@@ -16,6 +16,15 @@ app.use(express.static(path.join(__dirname, "public")))
 
 let routes = [
     {
+        route: "*",
+        request(req, res){
+            res.json({
+                message: "Endpoint not found.",
+                success: false
+            })
+        }
+    },
+    {
         route: "/",
         request(req, res) {
             res.json({
@@ -26,20 +35,29 @@ let routes = [
         }
     },
     {
-        route: "/v1/:endpoint",
+        route: "/v1/tokens",
         request(req, res) {
             let data = shitCoin.getData()
-            let response = {success: data.hasOwnProperty(req.params.endpoint)}
-            if(response.success){
-                response[req.params.endpoint] = data[req.params.endpoint]
-            }else{
-                response.error = "Endpoint not found."
+            let response = {
+                success: true,
+                tokens: Object.values(data.tokens)
             }
             res.json(response)
         }
     },
     {
-        route: ""
+        route: "/v1/token/:token",
+        request(req, res) {
+            let data = shitCoin.getData()
+            let response = {success: data.tokens.hasOwnProperty(req.params.token)}
+            if(response.success){
+                response.token = data.tokens[req.params.token]
+            }else{
+                response.message = "Token not found."
+            }
+            
+            res.json(response)
+        }
     }
 ]
 
