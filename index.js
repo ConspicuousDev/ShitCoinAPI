@@ -15,10 +15,10 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, "public")))
 
-let routes = routes
-for(let i = 0; i < routes.length; i++){
-    let route = routes[i]
-    app.get(route.route, (req, res) => {route.request(req, res)})
+let endpoints = routes.routes
+for(let i = 0; i < endpoints.length; i++){
+    let endpoint = endpoints[i]
+    app.get(endpoint.route, (req, res) => {endpoint.request(req, res)})
 }
 
 const PORT = process.env.PORT || 8888
