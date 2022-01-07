@@ -5,6 +5,7 @@ function parseContract(contract, cn){
     let inComment = false
     for(let i = 0; i < lines.length; i++){
         let line = lines[i].trim()
+        
         if(inComment){
             lineCopy = line.replace(/.*\*\//, "")
             if(line !== lineCopy){
@@ -23,8 +24,6 @@ function parseContract(contract, cn){
             if(line.trim().length === 0){
                 continue
             }
-
-            line+=cn
             newLines.push(line)
         }
     }
