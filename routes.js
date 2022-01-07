@@ -1,4 +1,4 @@
-routes = [
+let routes = [
     {
         route: "/",
         request(req, res) {
