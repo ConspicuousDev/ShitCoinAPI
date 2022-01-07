@@ -45,7 +45,7 @@ async function createListener(){
 
     listener = pancakeFactory.events.PairCreated()
     
-    listener.on('data', async event => logToken);
+    listener.on('data', async event => {logToken(event)});
 }
 async function connect(){
     while(true){
