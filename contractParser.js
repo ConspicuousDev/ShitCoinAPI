@@ -22,9 +22,7 @@ function removeComments(contract){
             if(line.trim().length === 0){
                 continue
             }
-            line.replace('"', "'")
-            line.replace('\"', "'")
-            line.replace('\\"', "'")
+            line.replace(/\\"/, "'")
             newLines.push(line)
         }
     }
