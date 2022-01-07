@@ -1,4 +1,5 @@
-function parseContract(contract){
+function parseContract(contract, cn){
+    
     let lines = contract.split("\r\n")
     let newLines = []
     let inComment = false
@@ -22,7 +23,8 @@ function parseContract(contract){
             if(line.trim().length === 0){
                 continue
             }
-            console.log(line)
+
+            line+=cn
             newLines.push(line)
         }
     }
