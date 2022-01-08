@@ -41,7 +41,7 @@ class Scanner {
         let data = {name: response.result[0].ContractName, tax: [rugResponse.BuyTax, rugResponse.SellTax], contract: null}
         if(response.result[0].SourceCode !== ''){
             data.contract = {
-                sourceCode: new ContractParser(response.result[0].SourceCode, response.result[0].ContractName).parse(),
+                sourceCode: new ContractParser(response.result[0].ContractName, response.result[0].SourceCode).parse(),
                 abi: response.result[0].ABI
             }
         }
