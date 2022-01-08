@@ -2,9 +2,12 @@ const express = require("express")
 const exphbs = require("express-handlebars")
 const path = require("path")
 const cors = require("cors")
-const routes = require("./routes")
-const shitCoin = require("./shitCoin")
 const app = express()
+
+const ShitCoin = require("./backend/ShitCoin")
+const routes = require("./api/routes")
+
+let shitCoin = new ShitCoin()
 
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
@@ -15,7 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, "public")))
 
-let endpoints = routes.routes
+let endpoints = routes(shitCoin)
 for(let i = 0; i < endpoints.length; i++){
     let endpoint = endpoints[i]
     app.get(endpoint.route, (req, res) => {endpoint.request(req, res)})
@@ -23,7 +26,8 @@ for(let i = 0; i < endpoints.length; i++){
 
 const PORT = process.env.PORT || 8888
 app.listen(PORT, () => {
-    console.log(`Server listening at http://localhost:${PORT}`)
+    console.log(`Server listening at http://localhost:${PORT}.`)
+    shitCoin.start()
 })
 
-shitCoin.main()
+module.exports = shitCoin
