@@ -6,7 +6,7 @@ const Holder = require("./Holder")
 
 class ShitCoin{
     constructor(){
-        this.tokenManager = new TokenManager(`mongodb://superuser:Lorenzo1%21@${utils.getURL()}:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`)
+        this.tokenManager = new TokenManager(`mongodb://superuser:Lorenzo1%21@URL_PLACEHOLDER:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`)
     }
 
     start(){

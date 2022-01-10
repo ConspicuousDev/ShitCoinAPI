@@ -6,6 +6,7 @@ const app = express()
 
 const ShitCoin = require("./backend/ShitCoin")
 const routes = require("./api/routes")
+const { sleep } = require("./backend/utils")
 
 let shitCoin = new ShitCoin()
 
@@ -27,6 +28,9 @@ for(let i = 0; i < endpoints.length; i++){
 const PORT = process.env.PORT || 8888
 app.listen(PORT, () => {
     console.log(`Server listening at http://localhost:${PORT}.`)
+    while(!shitCoin.tokenManager.isConnected()){
+        sleep(100)
+    }
     shitCoin.start()
 })
 
