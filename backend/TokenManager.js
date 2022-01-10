@@ -1,23 +1,30 @@
+const { MongoClient } = require("mongodb")
+const Token = require("./Token")
+
 class TokenManager{
-    constructor(){
-        this.tokens = {}
+    async constructor(url){
+        this.mongo = new MongoClient(url)
+        await this.mongo.connect()
+        this.db = mongo.db("shitcoin")
+        this.tokens = db.collection("tokens")
     }
 
-    getToken(address){
-        if(this.tokens.hasOwnProperty(address)){
-            return this.tokens[address]
+    async getToken(address){
+        let result = await this.tokens.findOne({address: address})
+        if(result !== undefined){
+            return result
         }
         throw new Error(`Token '${address}' not found.`)
     }
-    getTokens(){
-        return Object.values(this.tokens)
+    async getTokens(){
+        return await this.tokens.find({}).toArray()
     }
 
-    addToken(token){
-        this.tokens[token.address] = token
-        console.log("Token scanned: " + token.address + ".")
+    async addToken(token){
+        await this.tokens.insertOne(token)
     }
-    removeToken(address){
+    async removeToken(address){
+        //UPDATE TO USE MONGODB
         if(this.tokens.hasOwnProperty(address)){
             delete tokens[address]
             return

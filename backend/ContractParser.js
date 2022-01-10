@@ -28,7 +28,7 @@ class ContractParser{
                     continue
                 }
                 if(line.includes("contract " + this.name)){
-                    line+="function checkOwnership() public view onlyOwner returns (bool) { return true; }"
+                    line += "function checkOwnership() public view onlyOwner returns (bool) { return true; }"
                 }
                 newLines.push(line)
             }

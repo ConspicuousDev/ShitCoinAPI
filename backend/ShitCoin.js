@@ -1,3 +1,4 @@
+const utils = require("./utils")
 const Scanner = require("./Scanner");
 const TokenManager = require("./TokenManager")
 const Token = require("./Token")
@@ -5,7 +6,7 @@ const Holder = require("./Holder")
 
 class ShitCoin{
     constructor(){
-        this.tokenManager = new TokenManager()
+        this.tokenManager = new TokenManager(`mongodb://superuser:Lorenzo1%21@${utils.getURL()}:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`)
     }
 
     start(){
