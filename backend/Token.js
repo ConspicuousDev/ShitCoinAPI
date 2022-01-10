@@ -1,3 +1,5 @@
+let { web3 } = require("./constants");
+
 class Token{
     constructor(ticker, name, address, totalSupply, owner, liquidity, contract, tax, liquidityDate){
         this.ticker = ticker;
@@ -11,6 +13,16 @@ class Token{
         this.liquidityDate = liquidityDate; // PASSING CURRENT DATE
         this.score = Math.random()
     }
+
+    updateOwner(){
+
+    }
+    updateLiquidity(){
+        
+    }
+    
+
+
  }
 
  module.exports = Token

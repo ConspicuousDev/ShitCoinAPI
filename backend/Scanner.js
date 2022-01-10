@@ -73,4 +73,4 @@ class Scanner {
         }
     }
 }
-module.exports = Scanner
+module.exports = {Scanner}
