@@ -13,16 +13,6 @@ class Token{
         this.liquidityDate = liquidityDate; // PASSING CURRENT DATE
         this.score = Math.random()
     }
-
-    updateOwner(){
-
-    }
-    updateLiquidity(){
-        
-    }
-    
-
-
  }
 
  module.exports = Token
