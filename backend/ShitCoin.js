@@ -22,10 +22,11 @@ class ShitCoin{
         await client.connect()
             .then(() => {
                 console.log(" > External MongoClient URI set.")
-                connected
+                connected = true
             })
             .catch(() => {})
         if(connected) return client
+        throw new Error("Couldn't connect to database.")
     }
 
     async mongoConnect(){
