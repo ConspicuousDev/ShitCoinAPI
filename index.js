@@ -2,13 +2,14 @@ const express = require("express")
 const exphbs = require("express-handlebars")
 const path = require("path")
 const cors = require("cors")
-const app = express()
 
 const ShitCoin = require("./backend/ShitCoin")
 const routes = require("./api/routes")
 const { sleep } = require("./backend/utils")
 
 let shitCoin = new ShitCoin()
+
+const app = express()
 
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
