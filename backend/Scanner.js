@@ -69,8 +69,13 @@ class Scanner {
             scanData.totalSupply = await tokenContract.methods.totalSupply().call() / (10 ** await tokenContract.methods.decimals().call())
             scanData.liq = await this.WBNB.methods.balanceOf(event.returnValues.pair).call() / (10 ** 18)
             let token = new Token(scanData.ticker, scanData.name, tokenAddress, scanData.totalSupply, scanData.owner, scanData.liq, scanData.contract, scanData.tax, Date.now())
-            this.tokenManager.addToken(token)
-            console.log("Token scanned: " + token.address + ".")
+            try{
+                this.tokenManager.addToken(token)
+                console.log("Token scanned: " + token.address + ".")
+            }catch(e){
+                console.log(e.message)
+            }
+            
         }
     }
 }
