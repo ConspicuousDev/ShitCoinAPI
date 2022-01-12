@@ -71,7 +71,7 @@ class Scanner {
             let token = new Token(scanData.ticker, scanData.name, tokenAddress, scanData.totalSupply, scanData.owner, scanData.liq, scanData.contract, scanData.tax, Date.now())
             await this.tokenManager.addToken(token)
                 .then(() => {console.log(`New Token ${token.address} scanned.`)})
-                .catch(() => {console.log(e.message)})            
+                .catch((e) => {console.log(e.message)})            
         }
     }
 }
