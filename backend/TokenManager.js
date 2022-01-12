@@ -19,11 +19,7 @@ class TokenManager{
     }
 
     async addToken(token){
-        try{
-            await this.tokens.insertOne(token)
-        }catch(e){
-            throw new Error(`Token '${address}' has already been logged.`)
-        }
+        await this.tokens.insertOne(token).catch(() => {throw new Error(`Token '${token.address}' has already been logged.`})
     }
     async removeToken(address){
         await tokens.deleteMany({address: address})
