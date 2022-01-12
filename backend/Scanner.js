@@ -10,7 +10,7 @@ class Scanner {
         this.tokenManager = tokenManager
         this.createListener()
         this.connect()
-        console.log("Scanner inicialized.")
+        console.log(" > Scanner inicialized.")
     }
 
     async createListener() {

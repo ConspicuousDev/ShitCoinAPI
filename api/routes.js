@@ -3,45 +3,38 @@ function routes(shitCoin){
     return [
         {
             route: "/",
-            request(req, res) {
-                res.json({
+            async request(req, res) {
+                return {
                     message: "Welcome to ShitCoin API.",
                     success: true,
                     version: "0.0.1"
-                })
+                }
             }
         },
         {
             route: "/v1/tokens",
-            request(req, res) {
-                let response = {
+            async request(req, res) {
+                return {
                     success: true,
-                    tokens: manager.getTokens()
+                    tokens: await manager.getTokens()
                 }
-                res.json(response)
             }
         },
         {
             route: "/v1/token/:address",
-            request(req, res) {
-                let response = {}
-                try{
-                    response.success = true
-                    response.token = manager.getToken(req.params.address)
-                }catch(e){
-                    response.success = false
-                    response.message = e.message
+            async request(req, res) {
+                return {
+                    token: await manager.getToken(req.params.address)
                 }
-                res.json(response)
             }
         },
         {
             route: "*",
-            request(req, res){
-                res.json({
+            async request(req, res){
+                return {
                     message: "Endpoint not found.",
                     success: false
-                })
+                }
             }
         }
     ]

@@ -19,19 +19,27 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, "public")))
 
-let endpoints = routes(shitCoin)
-for(let i = 0; i < endpoints.length; i++){
-    let endpoint = endpoints[i]
-    app.get(endpoint.route, (req, res) => {endpoint.request(req, res)})
-}
-
 const PORT = process.env.PORT || 8888
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Server listening at http://localhost:${PORT}.`)
-    while(!shitCoin.tokenManager.isConnected()){
-        sleep(100)
+    await shitCoin.start()
+    let endpoints = routes(shitCoin)
+    for(let i = 0; i < endpoints.length; i++){
+        let endpoint = endpoints[i]
+        app.get(endpoint.route, async (req, res) => {
+            let json
+            try{
+                json = await endpoint.request(req, res)
+                json.success = true
+            }catch(e){
+                json = {
+                    success: false,
+                    message: e.message
+                }
+            }
+            res.json(json)
+        })
     }
-    shitCoin.start()
 })
 
 module.exports = shitCoin
