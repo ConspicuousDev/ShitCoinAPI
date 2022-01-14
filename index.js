@@ -7,8 +7,6 @@ const ShitCoin = require("./backend/ShitCoin")
 const routes = require("./api/routes")
 const { sleep } = require("./backend/utils")
 
-let shitCoin = new ShitCoin()
-
 const app = express()
 
 app.engine('handlebars', exphbs.engine());
@@ -20,6 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, "public")))
 
+let shitCoin = new ShitCoin(1)
 const PORT = process.env.PORT || 8888
 app.listen(PORT, async () => {
     console.log(`Server listening at http://localhost:${PORT}.`)

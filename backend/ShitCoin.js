@@ -1,12 +1,15 @@
 const utils = require("./utils")
 const Scanner = require("./Scanner");
 const TokenManager = require("./TokenManager")
+const TokenScorer = require("./TokenScorer")
 const Token = require("./Token")
 const Holder = require("./Holder");
 const { MongoClient } = require("mongodb");
 
 class ShitCoin{
-    constructor(){}
+    constructor(version){
+        this.version = version
+    }
 
     async setMongoClient(){
         let connected = false
@@ -26,16 +29,16 @@ class ShitCoin{
             })
             .catch(() => {})
         if(connected) return client
-        throw new Error("Couldn't connect to database.")
+        throw new Error(" > Couldn't connect to database.")
     }
 
-    async mongoConnect(){
+    async mongoReonnect(){
         await client.connect()
             .then(() => {
-                connected = true
+                console.log(" > MongoClient reconnection succeeded.")
             })
             .catch(() => {
-                connected = false
+                console.log(" > MongoClient reconnection failed.")
             })
     }
 
@@ -44,10 +47,12 @@ class ShitCoin{
         console.log("/ ___|| |__ (_) |_/ ___| _ __ (_)/ _|/ _| ___ _ __ ");
         console.log("\\___ \\| '_ \\| | __\\___ \\| '_ \\| | |_| |_ / _ \\ '__|");
         console.log(" ___) | | | | | |_ ___) | | | | |  _|  _|  __/ |   ");
-        console.log("|____/|_| |_|_|\\__|____/|_| |_|_|_| |_|  \\___|_|   v0.0.1");
+        console.log(`|____/|_| |_|_|\\__|____/|_| |_|_|_| |_|  \\___|_|   v${this.version}.0`);
         console.log(" ")
         this.mongo = await this.setMongoClient()
-        this.tokenManager = new TokenManager(this.mongo.db("shitcoin"))
+        this.db = this.mongo.db("shitcoin")
+        this.tokenManager = new TokenManager(this.db)
+        this.tokenScorer = new TokenScorer(this.tokenManager)
         this.scanner = new Scanner(this.tokenManager)
         console.log(" ")
 

@@ -1,3 +1,4 @@
+const { query } = require("express")
 const res = require("express/lib/response")
 const Token = require("./Token")
 
@@ -7,20 +8,27 @@ class TokenManager{
         console.log(" > TokenManager initialized.")
     }
 
-    async getToken(address){
-        let result = await this.tokens.findOne({address: address})
+    async getToken(query){
+        let result = await this.tokens.findOne(query)
         if(result != undefined && result != null){
             return result
         }
-        throw new Error(`Token '${address}' not found.`)
+        throw new Error(`No matching Token found.`)
     }
-    async getTokens(){
-        return await this.tokens.find({}).toArray()
+    async getTokens(query){
+        return await this.tokens.find(query).toArray()
     }
 
     async addToken(token){
-        await this.tokens.insertOne(token).catch(() => {throw new Error(`Token '${token.address}' has already been logged.`)})
+        await this.tokens.insertOne(token)
+            .catch(() => {throw new Error(`Token '${token.address}' has already been logged.`)})
     }
+    
+    async updateToken(address, values){
+        await this.tokens.updateOne({address: address}, {$set: values})
+            .catch(() => {throw new Error(`Token '${address}' not found.`)})
+    }
+
     async removeToken(address){
         await tokens.deleteMany({address: address})
     }

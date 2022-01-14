@@ -10,7 +10,7 @@ class Scanner {
         this.tokenManager = tokenManager
         this.createListener()
         this.connect()
-        console.log(" > Scanner inicialized.")
+        console.log(" > Scanner initialized.")
     }
 
     async createListener() {
@@ -70,7 +70,7 @@ class Scanner {
             scanData.liq = await this.WBNB.methods.balanceOf(event.returnValues.pair).call() / (10 ** 18)
             let token = new Token(scanData.ticker, scanData.name, tokenAddress, scanData.totalSupply, scanData.owner, scanData.liq, scanData.contract, scanData.tax, Date.now())
             await this.tokenManager.addToken(token)
-                .then(() => {console.log(`New Token ${token.address} scanned.`)})
+                .then(() => {console.log(`New Token '${token.address}' scanned.`)})
                 .catch((e) => {console.log(e.message)})            
         }
     }

@@ -11,7 +11,7 @@ class Token{
         this.contract = contract;
         this.tax = tax;
         this.scannedAt = scannedAt;
-        this.score = Math.random()
+        this.score = null
     }
  }
 

@@ -7,7 +7,7 @@ function routes(shitCoin){
                 return {
                     message: "Welcome to ShitCoin API.",
                     success: true,
-                    version: "0.0.1"
+                    version: shitCoin.version
                 }
             }
         },
@@ -16,15 +16,17 @@ function routes(shitCoin){
             async request(req, res) {
                 return {
                     success: true,
-                    tokens: await manager.getTokens()
+                    tokens: await manager.getTokens(req.query)
                 }
             }
         },
         {
-            route: "/v1/token/:address",
-            async request(req, res) {
+            route: "/v1/token",
+            async request(req, res){
+                if(Object.values(req.query).length === 0) throw new Error(`Query has not been defined.`)
                 return {
-                    token: await manager.getToken(req.params.address)
+                    success: true,
+                    token: await manager.getToken(req.query)
                 }
             }
         },
