@@ -12,9 +12,10 @@ class TokenScorer{
             //filter x hour old score
             let tokens = await this.tokenManager.getTokens({score: null})
             if(tokens.length === 0){
-                await sleep(5000)
+                await sleep(30000)
                 continue
             }
+            console.log(" ")
             console.log(`[TokenScorer] ${tokens.length} Token(s) added to the scoring queue.`)
             for (let i = 0; i < tokens.length; i++) {
                 const token = tokens[i];
@@ -22,6 +23,7 @@ class TokenScorer{
                 await this.tokenManager.updateToken(token.address, {score: score})
                 console.log(`[TokenScorer] Token '${token.address}' has been assigned a score of ${score.value}.`)
             }
+            console.log(" ")
         }
     }
 
