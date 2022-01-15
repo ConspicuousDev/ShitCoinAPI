@@ -70,17 +70,9 @@ class Scanner {
             scanData.liq = await this.WBNB.methods.balanceOf(event.returnValues.pair).call() / (10 ** 18)
             let time = Date.now()
             let token = new Token(scanData.ticker, scanData.name, tokenAddress, scanData.totalSupply, scanData.owner, scanData.liq, scanData.contract, scanData.tax, time)
-            let inDB = false
-            await this.tokenManager.getToken(token.address)
-                .then(inDB = true)
-                .catch(inDB = false)
-            if(!inDB){
             await this.tokenManager.addToken(token)
                 .then(() => {console.log(`[TokenScanner] Token '${token.address}' has been scanned.`)})
                 .catch((e) => {console.log(`[TokenScanner] WARNING: ${e.message}`)})            
-            }else{
-                console.log(`Token ${token.address} has already been logged.`)
-            }
         }
     }
 }
