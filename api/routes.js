@@ -1,4 +1,4 @@
-function routes(shitCoin){
+const routes = (shitCoin) => {
     let manager = shitCoin.tokenManager
     return [
         {

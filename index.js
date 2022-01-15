@@ -5,6 +5,7 @@ const cors = require("cors")
 
 const ShitCoin = require("./backend/ShitCoin")
 const routes = require("./api/routes")
+const origins = require("./api/origins")
 const { sleep } = require("./backend/utils")
 
 const app = express()
@@ -27,17 +28,22 @@ app.listen(PORT, async () => {
     for(let i = 0; i < endpoints.length; i++){
         let endpoint = endpoints[i]
         app.get(endpoint.route, async (req, res) => {
-            let json
-            try{
-                json = await endpoint.request(req, res)
-                json.success = true
-            }catch(e){
-                json = {
-                    success: false,
-                    message: e.message
+            if(!(origins.join(",")+",").includes(req.get("host").split(":")[0]+",")){
+                res.status(403).json()
+            }else{
+                let json
+                try{
+                    json = await endpoint.request(req, res)
+                    json.success = true
+                }catch(e){
+                    json = {
+                        success: false,
+                        message: e.message
+                    }
                 }
+                res.status(200)
+                res.json(json)
             }
-            res.json(json)
         })
     }
 })

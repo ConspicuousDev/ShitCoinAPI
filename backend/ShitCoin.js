@@ -1,5 +1,5 @@
 const utils = require("./utils")
-const Scanner = require("./Scanner");
+const TokenScanner = require("./TokenScanner");
 const TokenManager = require("./TokenManager")
 const TokenScorer = require("./TokenScorer")
 const Token = require("./Token")
@@ -43,18 +43,18 @@ class ShitCoin{
     }
 
     async start(){
-        console.log(" ____  _     _ _   ____        _  __  __           TM");
-        console.log("/ ___|| |__ (_) |_/ ___| _ __ (_)/ _|/ _| ___ _ __ ");
-        console.log("\\___ \\| '_ \\| | __\\___ \\| '_ \\| | |_| |_ / _ \\ '__|");
-        console.log(" ___) | | | | | |_ ___) | | | | |  _|  _|  __/ |   ");
+        console.log(` ____  _     _ _   ____        _  __  __           TM`);
+        console.log(`/ ___|| |__ (_) |_/ ___| _ __ (_)/ _|/ _| ___ _ __ `);
+        console.log(`\\___ \\| '_ \\| | __\\___ \\| '_ \\| | |_| |_ / _ \\ '__|`);
+        console.log(` ___) | | | | | |_ ___) | | | | |  _|  _|  __/ |   `);
         console.log(`|____/|_| |_|_|\\__|____/|_| |_|_|_| |_|  \\___|_|   v${this.version}.0`);
-        console.log(" ")
+        console.log(` `)
         this.mongo = await this.setMongoClient()
         this.db = this.mongo.db("shitcoin")
         this.tokenManager = new TokenManager(this.db)
         this.tokenScorer = new TokenScorer(this.tokenManager)
-        this.scanner = new Scanner(this.tokenManager)
-        console.log(" ")
+        this.scanner = new TokenScanner(this.tokenManager)
+        console.log(` `)
 
     }
 }
