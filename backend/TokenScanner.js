@@ -49,7 +49,7 @@ class Scanner {
                 let sources = JSON.parse(response.result[0].SourceCode).sources
                 let parsed = {}
                 Object.keys(sources).forEach(sourceName => {
-                    parsed[sourceName] = new ContractParser(response.result[0].ContractName, sources[sourceName]).parse()
+                    parsed[sourceName] = sources[sourceName]
                 })
                 data.contract.sourceCode = parsed
                 data.multiSources = true

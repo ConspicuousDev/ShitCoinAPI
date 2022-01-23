@@ -53,7 +53,7 @@ class ShitCoin{
         this.db = this.mongo.db("shitcoin")
         this.tokenManager = new TokenManager(this.db)
         this.tokenScorer = new TokenScorer(this.tokenManager)
-        this.scanner = new TokenScanner(this.tokenManager)
+        //this.scanner = new TokenScanner(this.tokenManager)
         console.log(` `)
 
     }
