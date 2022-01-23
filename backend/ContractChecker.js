@@ -9,7 +9,7 @@ class ContractChecker{
     }
 
     compile(){
-        solc.loadRemoteVersion(token.source.CompilerVersion, function(err, solcSnapshot) {
+        solc.loadRemoteVersion(this.token.source.CompilerVersion, function(err, solcSnapshot) {
             if (err) {
                 throw err;
             } else {
