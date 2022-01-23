@@ -4,8 +4,12 @@ var solc = require('solc');
 var { baseSettings } = require("./constants")
 
 class ContractChecker{
-    async compile(token){
-        solc.loadRemoteVersion(token.contract.compiler, function(err, solcSnapshot) {
+    constructor(token){
+        this.token = token
+    }
+
+    async compile(){
+        solc.loadRemoteVersion(this.token.contract.compiler, (err, solcSnapshot) => {
             
         });
     }
