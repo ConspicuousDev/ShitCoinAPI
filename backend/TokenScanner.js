@@ -41,10 +41,21 @@ class Scanner {
         let data = {name: response.result[0].ContractName, tax: [rugResponse.BuyTax, rugResponse.SellTax], contract: null}
         if(response.result[0].SourceCode !== ''){
             data.contract = {
-                sourceCode: new ContractParser(response.result[0].ContractName, response.result[0].SourceCode).parse(),
                 abi: response.result[0].ABI,
                 compiler: response.result[0].CompilerVersion,
                 name: response.result[0].ContractName
+            }
+            try{
+                let sources = JSON.parse(response.result[0].SourceCode).sources
+                let parsed = {}
+                Object.keys(sources).forEach(sourceName => {
+                    parsed[sourceName] = new ContractParser(response.result[0].ContractName, sources[sourceName]).parse()
+                })
+                data.contract.sourceCode = parsed
+                data.multiSources = true
+            }catch (e){
+                data.contract.sourceCode = new ContractParser(response.result[0].ContractName, response.result[0].SourceCode).parse()
+                data.multiSources = false
             }
         }
         return data
