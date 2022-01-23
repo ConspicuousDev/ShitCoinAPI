@@ -1,3 +1,4 @@
+const { compile } = require("solc");
 const solc = require("solc");
 const ContractChecker = require("./ContractChecker")
 const { sleep } = require("./utils");
@@ -41,8 +42,7 @@ class TokenScorer{
     async score(token, solc){
         let contractChecker = new ContractChecker(token, solc)
         if(token.contract === null) return 0
-        let compileOutput = await contractChecker.compile()
-        console.log(compileOutput.contracts)
+        await contractChecker.compile()
         return null
     }
 }

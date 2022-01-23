@@ -4,6 +4,7 @@ const Web3 = require("web3")
 const provider = "wss://bsc-ws-node.nariox.org:443"
 
 const web3 = new Web3(new Web3.providers.WebsocketProvider(provider))
+const web3test = new Web3(new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545/"))
 //const web3 = new Web3(new Web3.providers.HttpProvider(provider))
 
 
@@ -36,4 +37,4 @@ const baseSettings = {
     }
   };
 
-module.exports = { web3, addresses, abis, provider, baseSettings}
+module.exports = { web3, web3test, addresses, abis, provider, baseSettings}
