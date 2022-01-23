@@ -26,7 +26,7 @@ class TokenScorer{
         }
     }
 
-    async score(token){
+    async score(token){        
         if(token.contract === null) return 0
         return 1
     }

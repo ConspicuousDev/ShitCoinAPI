@@ -36,4 +36,4 @@ const baseSettings = {
     }
   };
 
-module.exports = { web3, addresses, abis, provider}
+module.exports = { web3, addresses, abis, provider, baseSettings}
