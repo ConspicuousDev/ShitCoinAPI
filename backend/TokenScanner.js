@@ -43,6 +43,7 @@ class Scanner {
             data.contract = {
                 sourceCode: new ContractParser(response.result[0].ContractName, response.result[0].SourceCode).parse(),
                 abi: response.result[0].ABI
+                
             }
         }
         return data
@@ -58,9 +59,9 @@ class Scanner {
             const scanData = await this.getBscScanData(tokenAddress)
             let tokenContract = new web3.eth.Contract(abis.GENERAL_ABI, tokenAddress)
             scanData.ticker = await tokenContract.methods.symbol().call();
-            if (scanData.name === "") {
-                scanData.name = await tokenContract.methods.name().call();
-            }
+            
+            scanData.name = await tokenContract.methods.name().call();
+            
             try {
                 scanData.owner = await tokenContract.methods.owner().call()
             } catch {
