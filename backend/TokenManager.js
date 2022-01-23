@@ -10,7 +10,9 @@ class TokenManager{
 
     async getToken(query){
         let token = await this.tokens.findOne(query)
-            .catch(() => {throw new Error(`No matching Token found.`)})
+        if(token === null){
+            throw new Error(`No matching Token found.`)
+        }
         delete token._id
         return token
     }
