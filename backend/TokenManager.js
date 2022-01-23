@@ -9,20 +9,21 @@ class TokenManager{
     }
 
     async getToken(query){
-        let result = await this.tokens.findOne(query)
-        if(result != undefined && result != null){
-            return result
-        }
-        throw new Error(`No matching Token found.`)
+        let token = await this.tokens.findOne(query)
+            .catch((e) => {throw new Error(`No matching Token found.`)})
+        return token
     }
     async getTokens(query){
         return await this.tokens.find(query).toArray()
     }
 
     async addToken(token){
-        await this.tokens.insertOne(token)
-            .catch((e) => {throw e})
-            //throw new Error(`Token '${token.address}' has already been logged.`)
+        await this.getToken({address: token.address})
+            .then(async () => {
+                await this.tokens.insertOne(token)
+                    .catch((e) => {throw e})
+            })
+        .catch((e) => {throw new Error(`Token ${token.address} has already been logged.`)})
     }
     
     async updateToken(address, values){
