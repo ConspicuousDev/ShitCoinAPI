@@ -1,4 +1,4 @@
-const Web3 = require("web3")
+const Web3 = require("web3");
 const fetch = require('cross-fetch');
 let { web3, addresses, abis, provider } = require("./constants");
 const { sleep } = require("./utils");
