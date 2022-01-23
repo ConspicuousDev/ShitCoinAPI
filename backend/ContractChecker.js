@@ -9,9 +9,15 @@ class ContractChecker{
     }
 
     async compile(){
-        solc.loadRemoteVersion(this.token.contract.compiler, (err, solcSnapshot) => {
-            
+        solc.loadRemoteVersion(this.token.contract.compiler, (err, solcSnapshot) => { 
         });
+
+        let compileSettings = {...baseSettings}
+        compileSettings.sources["test.sol"].content = this.token.contract.sourceCode
+
+        var output = JSON.parse(solc.compile(JSON.stringify(compileSettings)))
+        console.log(output)
+
     }
 }
 
