@@ -11,7 +11,6 @@ class TokenScorer{
         while(true){
             let tokens = await this.tokenManager.getTokens({score: null})
             if(tokens.length === 0){
-                //console.log(`[TokenScorer] ${tokens.length} Token(s) added to the scoring queue.`)
                 await sleep(10000)
                 continue
             }

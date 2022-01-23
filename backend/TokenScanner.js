@@ -42,7 +42,9 @@ class Scanner {
         if(response.result[0].SourceCode !== ''){
             data.contract = {
                 sourceCode: new ContractParser(response.result[0].ContractName, response.result[0].SourceCode).parse(),
-                abi: response.result[0].ABI
+                abi: response.result[0].ABI,
+                compiler: response.result[0].CompilerVersion,
+                name: response.result[0].ContractName
             }
         }
         return data
