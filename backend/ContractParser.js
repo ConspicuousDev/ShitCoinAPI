@@ -8,7 +8,7 @@ class ContractParser{
         let newLines = []
         let inComment = false
         for(let i = 0; i < lines.length; i++){
-            let line = lines[i].trim()
+            let line = lines[i]
             if(inComment){
                 let lineCopy = line.replace(/.*\*\//, "")
                 if(line !== lineCopy){
