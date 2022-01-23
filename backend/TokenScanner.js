@@ -60,9 +60,7 @@ class Scanner {
             const scanData = await this.getBscScanData(tokenAddress)
             let tokenContract = new web3.eth.Contract(abis.GENERAL_ABI, tokenAddress)
             scanData.ticker = await tokenContract.methods.symbol().call();
-            
             scanData.name = await tokenContract.methods.name().call();
-            
             try {
                 scanData.owner = await tokenContract.methods.owner().call()
             } catch {
