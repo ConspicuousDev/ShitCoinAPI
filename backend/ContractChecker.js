@@ -4,26 +4,11 @@ var solc = require('solc');
 var { baseSettings } = require("./constants")
 
 class ContractChecker{
-    constructor(token){
-        this.token = token
+    async compile(token){
+        solc.loadRemoteVersion(token.contract.compiler, function(err, solcSnapshot) {
+            
+        });
     }
-
-    compile(){
-        solc.loadRemoteVersion(token.source.CompilerVersion, function(err, solcSnapshot) {
-            if (err) {
-                throw err;
-            } else {
-                solc.compile()
-                let tokenSettings = {...baseSettings}
-                
-                tokenSettings.sources['test.sol'].content=this.token.contract.sourceCode
-                console.log(tokenSettings)
-            }
-          });
-
-    }
-
-
 }
 
 module.exports = ContractChecker
