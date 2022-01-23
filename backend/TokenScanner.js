@@ -1,4 +1,4 @@
-const Web3 = require("web3")
+const Web3 = require("web3");
 const fetch = require('cross-fetch');
 let { web3, addresses, abis, provider } = require("./constants");
 const { sleep } = require("./utils");
@@ -60,9 +60,9 @@ class Scanner {
             const scanData = await this.getBscScanData(tokenAddress)
             let tokenContract = new web3.eth.Contract(abis.GENERAL_ABI, tokenAddress)
             scanData.ticker = await tokenContract.methods.symbol().call();
-            if (scanData.name === "") {
-                scanData.name = await tokenContract.methods.name().call();
-            }
+            
+            scanData.name = await tokenContract.methods.name().call();
+            
             try {
                 scanData.owner = await tokenContract.methods.owner().call()
             } catch {
