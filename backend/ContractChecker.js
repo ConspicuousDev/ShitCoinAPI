@@ -5,7 +5,6 @@ var { baseSettings } = require("./constants")
 class ContractChecker{
     constructor(token, solc){
         this.token = token
-        this.solc = solc
     }
 
     async compile(){
