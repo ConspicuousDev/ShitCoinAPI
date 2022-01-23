@@ -1,4 +1,7 @@
+const ContractChecker = require("./contractChecker")
+
 const { sleep } = require("./utils");
+
 
 class TokenScorer{
     constructor(tokenManager){
@@ -26,7 +29,10 @@ class TokenScorer{
         }
     }
 
-    async score(token){        
+    async score(token){
+        let contractChecker = new ContractChecker(token)
+        contractChecker.compile()
+        
         if(token.contract === null) return 0
         return 1
     }

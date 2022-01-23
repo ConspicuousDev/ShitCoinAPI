@@ -25,3 +25,5 @@ class ContractChecker{
 
 
 }
+
+module.exports = ContractChecker
