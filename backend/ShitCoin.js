@@ -32,7 +32,7 @@ class ShitCoin{
         throw new Error(" > Couldn't connect to database.")
     }
 
-    async mongoReonnect(){
+    async mongoReconnect(){
         await client.connect()
             .then(() => {
                 console.log(" > MongoClient reconnection succeeded.")
@@ -48,13 +48,13 @@ class ShitCoin{
         console.log(`\\___ \\| '_ \\| | __\\___ \\| '_ \\| | |_| |_ / _ \\ '__|`);
         console.log(` ___) | | | | | |_ ___) | | | | |  _|  _|  __/ |   `);
         console.log(`|____/|_| |_|_|\\__|____/|_| |_|_|_| |_|  \\___|_|   v${this.version}.0`);
-        console.log(` `)
+        console.log()
         this.mongo = await this.setMongoClient()
         this.db = this.mongo.db("shitcoin")
         this.tokenManager = new TokenManager(this.db)
         this.tokenScorer = new TokenScorer(this.tokenManager)
-        //this.scanner = new TokenScanner(this.tokenManager)
-        console.log(` `)
+        this.scanner = new TokenScanner(this.tokenManager)
+        console.log()
 
     }
 }
