@@ -16,7 +16,7 @@ app.set('views', './views');
 
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, "public")))
 
 let shitCoin = new ShitCoin(1)
@@ -25,25 +25,21 @@ app.listen(PORT, async () => {
     console.log(`Server listening at http://localhost:${PORT}.`)
     await shitCoin.start()
     let endpoints = routes(shitCoin)
-    for(let i = 0; i < endpoints.length; i++){
+    for (let i = 0; i < endpoints.length; i++) {
         let endpoint = endpoints[i]
         app.get(endpoint.route, async (req, res) => {
-            if(!(origins.join(",")+",").includes(req.get("host").split(":")[0]+",")){
-                res.status(403).json()
-            }else{
-                let json
-                try{
-                    json = await endpoint.request(req, res)
-                    json.success = true
-                }catch(e){
-                    json = {
-                        success: false,
-                        message: e.message
-                    }
+            if (!origins.includes(req.get("host").split(":")[0])) return res.status(403).json()
+            let json
+            try {
+                json = await endpoint.request(req, res)
+                json.success = true
+            } catch (e) {
+                json = {
+                    success: false,
+                    message: e.message
                 }
-                res.status(200)
-                res.json(json)
             }
+            res.status(200).json(json)
         })
     }
 })
