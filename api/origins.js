@@ -1,7 +1,7 @@
 const origins = [
     "localhost",
     "omniscient.phild.education",
-    "shitcoinviewer.netlify.app"
+    "shitcoin-api.herokuapp.com"
 ]
 
 module.exports = origins
