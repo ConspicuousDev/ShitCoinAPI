@@ -14,7 +14,7 @@ const routes = (shitCoin) => {
         {
             route: "/v1/tokens",
             async request(req, res) {
-                let query = JSON.parse(req.query.query)
+                let query = Object.keys(req.query).includes("query") ? JSON.parse(req.query.query) : {}
                 return {
                     success: true,
                     query: query,
@@ -25,7 +25,7 @@ const routes = (shitCoin) => {
         {
             route: "/v1/token",
             async request(req, res){
-                let query = JSON.parse(req.query.query)
+                let query = Object.keys(req.query).includes("query") ? JSON.parse(req.query.query) : {}
                 if(Object.keys(query).length === 0) throw new Error(`Query has not been defined.`)
                 return {
                     success: true,
