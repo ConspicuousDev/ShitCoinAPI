@@ -10,10 +10,11 @@ class ShitCoin{
     constructor(version){
         this.version = version
     }
-
+    
     async setMongoClient(){
         let connected = false
         let client = new MongoClient("mongodb://superuser:Lorenzo1%21@localhost:27017/shitcoin?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false")
+//        let client = new MongoClient("mongodb://superuser:Lorenzo1%21@192.168.0.80:27017/shitcoin?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false")
         await client.connect()
             .then(() => {
                 console.log(" > Local MongoClient URI set.")

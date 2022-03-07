@@ -14,19 +14,23 @@ const routes = (shitCoin) => {
         {
             route: "/v1/tokens",
             async request(req, res) {
+                let query = JSON.parse(req.query.query)
                 return {
                     success: true,
-                    tokens: await manager.getTokens(req.query)
+                    query: query,
+                    tokens: await manager.getTokens(query)
                 }
             }
         },
         {
             route: "/v1/token",
             async request(req, res){
-                if(Object.values(req.query).length === 0) throw new Error(`Query has not been defined.`)
+                let query = JSON.parse(req.query.query)
+                if(Object.keys(query).length === 0) throw new Error(`Query has not been defined.`)
                 return {
                     success: true,
-                    token: await manager.getToken(req.query)
+                    query: query,
+                    token: await manager.getToken(query)
                 }
             }
         },
