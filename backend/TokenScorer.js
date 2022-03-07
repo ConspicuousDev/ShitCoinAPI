@@ -21,7 +21,7 @@ class TokenScorer {
             for (let i = 0; i < tokens.length; i++) {
                 const token = tokens[i];
                 scoring.push(token.address)
-                let value = await this.score(token, solcSnapshot)
+                let value = await this.score(token)
                 let score = { value: value, time: Date.now() }
                 await this.tokenManager.updateToken(token.address, { score: score })
                 console.log(`[TokenScorer] Token '${token.address}' has been assigned a score of ${score.value}.`)
@@ -31,7 +31,7 @@ class TokenScorer {
         }
     }
 
-    async score(token, solc) {
+    async score(token) {
         if (token.contract === null) return 0
         return 1
     }
