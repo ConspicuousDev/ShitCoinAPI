@@ -42,8 +42,8 @@ class TokenScorer{
     async score(token, solc){
         let contractChecker = new ContractChecker(token, solc)
         if(token.contract === null) return 0
-        await contractChecker.compile()
-        return null
+        //await contractChecker.compile()
+        return 1
     }
 }
 
